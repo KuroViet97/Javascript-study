@@ -1,1 +1,1 @@
-# MDN-Learning
+# Javascript-study
