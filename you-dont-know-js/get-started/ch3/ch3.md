@@ -52,5 +52,29 @@ for (let [idx,btn] of buttons.entries()) {
 
 # *`this`* 
 
-- Scope is static
-- *this* is dynamic (*execution context*)
+- Characteristic of **function**.
+- Scope is static.
+- *this* is dynamic (*execution context*).
+
+# Prototypes
+
+- Characteristic of **object**.
+- "*Linkage*" between objects. Series of objects linked together via prototypes is *prototype chains*.
+- Main objective: **delegation**.
+
+```javascript
+    //default linkage: Object.prototype
+    var csgo = {
+        rank: "silver"
+    };
+    csgo.toString(); //Object.prototype.toString();
+```
+
+# Object Linkage - Object.create(...)
+
+```javascript
+    var anotherCsgo = Object.create(csgo);
+    anotherCsgo.rank //silver
+    Object.create(null) //standalone object, not linked anywhere
+```
+
