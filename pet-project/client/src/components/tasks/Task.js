@@ -1,10 +1,10 @@
 import React from 'react';
 import './Task.css';
-//apply style for completed task
-const Task = ({ task, index, completeTask, removeTask, editTask }) => (
+//apply style for isCompleted task
+const Task = ({ task, index, removeTask, completeTask }) => (
     <div
         className="task"
-        style={{ textDecoration: task.completed ? "line-through" : "" }}
+        style={{ textDecoration: task.isCompleted ? "line-through" : "" }}
     >
         {task.content}
         <button class="fas fa-trash" onClick={() => removeTask(index)} />   

@@ -1,3 +1,7 @@
 .task button.fas.fa-trash {
     background: red;
 }
+
+.task input {
+    float: right;
+}

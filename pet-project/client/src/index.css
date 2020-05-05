@@ -37,7 +37,7 @@ body {
 }
 
 .create-task input[type=text] {
-  margin: 2.5em 2em;
+  margin: 2.5em 7em;
   width: 80%;
   outline: none;
   border: none;
