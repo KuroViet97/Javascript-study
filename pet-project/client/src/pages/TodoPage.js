@@ -1,8 +1,9 @@
 import React from 'react';
-import Task from '../tasks/Task';
-import CreateTask from '../tasks/CreateTask';
+import Task from '../components/Task';
+import CreateTask from '../components/CreateTask';
+import '../index.css';
 
-const Todo = () => {
+const TodoPage = () => {
       const [tasks, setTasks] = React.useState([]);
       const [tasksRemaining, setTasksRemaining] = React.useState(0);
 
@@ -52,4 +53,4 @@ const Todo = () => {
       );
 }
 
-export default Todo;
+export default TodoPage;

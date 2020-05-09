@@ -37,9 +37,17 @@ body {
 }
 
 .create-task input[type=text] {
-  margin: 2.5em 7em;
+  margin: 2.5em 7.5em;
   width: 80%;
   outline: none;
   border: none;
   padding: 0.7em;
+}
+
+.task button.fas.fa-trash {
+  background: red;
+}
+
+.task input {
+  float: right;
 }

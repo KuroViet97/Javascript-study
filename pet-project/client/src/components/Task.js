@@ -1,5 +1,4 @@
 import React from 'react';
-import './Task.css';
 //apply style for isCompleted task
 const Task = ({ task, index, removeTask, completeTask }) => (
     <div
