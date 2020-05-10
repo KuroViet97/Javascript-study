@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Todo = ({onClick, completed, content}) => {
+const Todo = ({ onClick, completed, content }) => {
     return (
         <li
             onClick={onClick}
@@ -10,7 +10,7 @@ const Todo = ({onClick, completed, content}) => {
             }}
         >
             {content}
-        </li>
+        </li >
     );
 }
 
