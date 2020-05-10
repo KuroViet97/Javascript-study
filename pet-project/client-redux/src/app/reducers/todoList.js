@@ -17,6 +17,9 @@ const todoList = (state = [], action) => {
                 }
                 return todo;
             });
+        case 'REMOVE_TODO':
+            const newState = [...state];
+            return newState.filter(state => state.id !== action.id);
         default:
             return state;
     }
