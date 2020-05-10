@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Todo from './Todo';
 import Header from './Header';
 
-const TodoList = ({ todoList, remainingTodoList, toggleTodo }) => {
+const TodoList = ({ todoList, remainingTodoList, toggleTodo, removeTodo }) => {
     return (
         <>
             <Header
@@ -14,7 +14,8 @@ const TodoList = ({ todoList, remainingTodoList, toggleTodo }) => {
                     <Todo
                         key={todo.id}
                         {...todo}
-                        onClick={() => toggleTodo(todo.id)}
+                        onComplete={() => toggleTodo(todo.id)}
+                        onRemove={() => removeTodo(todo.id)}
                     />
                 ))}
             </ul>
