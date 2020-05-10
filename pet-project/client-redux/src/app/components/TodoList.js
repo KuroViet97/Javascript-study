@@ -1,19 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Todo from './Todo';
+import Header from './Header';
 
-const TodoList = ({todoList, onTodoClick}) => {
+const TodoList = ({ todoList, remainingTodoList, toggleTodo }) => {
     return (
-        <ul>
-            {todoList.map((todo, index) => (
-                <Todo 
-                    key = {todo.id}
-                    {...todo}
-                    onClick={() => onTodoClick(todo.id)}
-                />
-            ))}
-        </ul>
-
+        <>
+            <Header
+                todoList={remainingTodoList}
+            />
+            <ul>
+                {todoList.map(todo => (
+                    <Todo
+                        key={todo.id}
+                        {...todo}
+                        onClick={() => toggleTodo(todo.id)}
+                    />
+                ))}
+            </ul>
+        </>
     );
 }
 
@@ -25,7 +30,7 @@ TodoList.propTypes = {
             content: PropTypes.string.isRequired
         })
     ),
-    onTodoClick: PropTypes.func.isRequired
+    toggleTodo: PropTypes.func.isRequired
 };
 
 export default TodoList;
