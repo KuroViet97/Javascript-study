@@ -1,24 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Todo from './Todo';
-import Header from './Header';
+import RemainingTasks from './RemainingTasks';
 
 const TodoList = ({ todoList, remainingTodoList, toggleTodo, removeTodo }) => {
+    const displayTodoTask = () => (
+        todoList.map(todo => (
+            <Todo
+                key={todo.id}
+                {...todo}
+                onComplete={() => toggleTodo(todo.id)}
+                onRemove={() => removeTodo(todo.id)}
+            />
+        ))
+    );
     return (
         <>
-            <Header
+            <RemainingTasks
                 todoList={remainingTodoList}
             />
-            <ul>
-                {todoList.map(todo => (
-                    <Todo
-                        key={todo.id}
-                        {...todo}
-                        onComplete={() => toggleTodo(todo.id)}
-                        onRemove={() => removeTodo(todo.id)}
-                    />
-                ))}
-            </ul>
+            <table className="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Task Description</th>
+                        <th>Status</th>
+                        <th>Task Modification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {displayTodoTask()}
+                </tbody>
+            </table>
         </>
     );
 }

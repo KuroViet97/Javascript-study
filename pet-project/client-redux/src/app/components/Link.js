@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './index.css';
 
 const Link = ({ active, children, onClick }) => (
   <button
+    className="waves-effect waves-light btn btn-large btn-margin-left"
     onClick={onClick}
     disabled={active}
-    style={{
-      marginLeft: '4px'
-    }}
   >
     {children}
   </button>

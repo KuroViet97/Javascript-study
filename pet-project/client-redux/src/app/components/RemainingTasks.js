@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Header = ({ todoList }) => {
+const RemainingTasks = ({ todoList }) => {
     const [remainingTasks, setRemainingTasks] = React.useState(todoList.length);
 
     React.useEffect(() => {
@@ -9,13 +9,14 @@ const Header = ({ todoList }) => {
     }, [todoList]);
 
     return (
-        <div>
-            Remaining Tasks: {remainingTasks}
+        <div className="right">
+            <strong>Remaining Tasks:</strong> {remainingTasks}
         </div>
+
     );
 };
 
-Header.propTypes = {
+RemainingTasks.propTypes = {
     todoList: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -25,4 +26,4 @@ Header.propTypes = {
     )
 };
 
-export default Header;
+export default RemainingTasks;
