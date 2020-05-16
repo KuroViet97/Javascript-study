@@ -2,25 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Todo from './Todo';
 import RemainingTasks from './RemainingTasks';
+import EditTodo from './EditTodo';
 
-const TodoList = ({ todoList, remainingTodoList, toggleTodo, removeTodo }) => {
-    const displayTodoTask = () => (
-        todoList.map(todo => (
-            <Todo
-                key={todo.id}
-                {...todo}
-                onComplete={() => toggleTodo(todo.id)}
-                onRemove={() => removeTodo(todo.id)}
-            />
-        ))
+const TodoList = ({ todoList, remainingTodoList, toggleTodo, removeTodo, editTodo }) => {
+    const renderTodo = (todo) => (
+        <Todo
+            key={todo.id}
+            {...todo}
+            onComplete={() => toggleTodo(todo.id)}
+            onRemove={() => removeTodo(todo.id)}
+            onEdit={() => editTodo(todo.id)}
+        />
     );
+
+    const renderEditTodo = (todo) => (
+        <EditTodo
+            todo={todo}
+            key={todo.id}
+        />
+    );
+
     return (
         <>
             <RemainingTasks
                 todoList={remainingTodoList}
             />
             <table className="responsive-table">
-                <thead>
+                <thead className="centered">
                     <tr>
                         <th>Task Description</th>
                         <th>Status</th>
@@ -28,7 +36,9 @@ const TodoList = ({ todoList, remainingTodoList, toggleTodo, removeTodo }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {displayTodoTask()}
+                    {todoList.map(todo => (
+                        todo.editable ? renderEditTodo(todo) : renderTodo(todo)
+                    ))}
                 </tbody>
             </table>
         </>

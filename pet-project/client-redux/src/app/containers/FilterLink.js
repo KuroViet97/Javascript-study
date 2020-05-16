@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-//ap redux dispatch to props
+//app redux dispatch to props
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onClick: () => {

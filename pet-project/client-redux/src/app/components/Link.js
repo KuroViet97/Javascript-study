@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './index.css';
+import '../../App.css';
 
 const Link = ({ active, children, onClick }) => (
   <button

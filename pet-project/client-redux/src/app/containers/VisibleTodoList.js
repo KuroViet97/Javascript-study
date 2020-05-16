@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { toggleTodo, removeTodo } from '../actions';
+import { toggleTodo, removeTodo, editTodo } from '../actions';
 import TodoList from '../components/TodoList';
 import { VisibilityFilters } from '../actions/index';
 
@@ -27,7 +27,8 @@ const mapStateToProps = state => {
 //map redux dispatch to props 
 const mapDispatchToProps = dispatch => ({
     toggleTodo: id => dispatch(toggleTodo(id)),
-    removeTodo: id => dispatch(removeTodo(id))
+    removeTodo: id => dispatch(removeTodo(id)),
+    editTodo: id => dispatch(editTodo(id))
 });
 
 const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
