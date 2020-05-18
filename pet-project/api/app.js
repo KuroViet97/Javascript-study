@@ -7,6 +7,11 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+//todo apis
+var todoRouter = require('./routes/todoApi');
+
+var bodyParser = require('body-parser');
+
 var app = express();
 
 // view engine setup
@@ -21,6 +26,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use(todoRouter.getTodo);
+app.use(todoRouter.postTodo);
+app.use(todoRouter.putTodo);
+app.use(todoRouter.deleteTodo);
+
+app.use(bodyParser.json());
+
+app.use((err, req, res, next) => {
+  return res.status(err.status || 400).json({
+    status: err.status || 400,
+    message: err.message || 'error processing request'
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
