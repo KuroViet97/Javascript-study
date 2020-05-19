@@ -5,7 +5,8 @@ import Link from '../components/Link';
 //map redux state to props state
 const mapStateToProps = (state, ownProps) => {
     return {
-        active: ownProps.filter === state.visibilityFilter
+        active: ownProps.filter === state.visibilityFilter,
+        filter: ownProps.filter
     }
 };
 
