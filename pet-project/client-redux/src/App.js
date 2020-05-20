@@ -1,17 +1,17 @@
 import React from 'react';
-import VisibleTodoList from './app/containers/VisibleTodoList';
-import AddTodo from './app/containers/AddTodo';
-import Footer from './app/components/Footer';
-import Header from './app/containers/Header';
+import TodoListView from './app/containers/TodoListView';
+import AddTodoView from './app/containers/AddTodoView';
+import FooterView from './app/containers/FooterView';
+import HeaderView from './app/containers/HeaderView';
 
 function App() {
   return (
     <div className="center">
-      <Header />
+      <HeaderView />
       <div className="container">
-        <AddTodo />
-        <VisibleTodoList />
-        <Footer />
+        <AddTodoView />
+        <TodoListView />
+        <FooterView />
       </div>
     </div>
   );

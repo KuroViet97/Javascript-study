@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import todoApp from './app/reducers';
-import { createStore } from 'redux';
+import rootReducer from './app/reducers';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import * as serviceWorker from './serviceWorker';
 import Root from './app/routers/Root';
 
-const store = createStore(todoApp);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>

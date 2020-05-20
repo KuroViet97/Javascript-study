@@ -1,8 +1,8 @@
 import React from 'react'
-import FilterLink from '../containers/FilterLink'
+import FilterLink from '../components/FilterLink'
 import { VisibilityFilters } from '../actions'
 
-const Footer = () => (
+const FooterView = () => (
   <div className="left">
     <span>Select filters: </span>
     <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
@@ -11,4 +11,4 @@ const Footer = () => (
   </div>
 )
 
-export default Footer;
+export default FooterView;

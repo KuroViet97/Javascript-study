@@ -3,7 +3,7 @@ import { toggleTodo, removeTodo, editTodo } from '../actions';
 import TodoList from '../components/TodoList';
 import { VisibilityFilters } from '../actions/index';
 
-const getVisibleTodoList = (todoList, filter) => {
+const getTodoList = (todoList, filter) => {
     switch (filter) {
         case 'SHOW_ALL':
             return todoList;
@@ -19,8 +19,8 @@ const getVisibleTodoList = (todoList, filter) => {
 //map redux state to props state
 const mapStateToProps = state => {
     return {
-        todoList: getVisibleTodoList(state.todoList, state.visibilityFilter),
-        remainingTodoList: getVisibleTodoList(state.todoList, VisibilityFilters.SHOW_ACTIVE)
+        todoList: getTodoList(state.todoList, state.visibilityFilter),
+        remainingTodoList: getTodoList(state.todoList, VisibilityFilters.SHOW_ACTIVE)
     }
 };
 
@@ -31,6 +31,6 @@ const mapDispatchToProps = dispatch => ({
     editTodo: id => dispatch(editTodo(id))
 });
 
-const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
+const TodoListView = connect(mapStateToProps, mapDispatchToProps)(TodoList);
 
-export default VisibleTodoList;
+export default TodoListView;

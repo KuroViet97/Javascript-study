@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Todo from './Todo';
-import RemainingTasks from './RemainingTasks';
+import RemainingTodos from './RemainingTodos';
 import EditTodo from './EditTodo';
 
 const TodoList = ({ todoList, remainingTodoList, toggleTodo, removeTodo, editTodo }) => {
@@ -24,7 +24,7 @@ const TodoList = ({ todoList, remainingTodoList, toggleTodo, removeTodo, editTod
 
     return (
         <>
-            <RemainingTasks
+            <RemainingTodos
                 todoList={remainingTodoList}
             />
             <table className="responsive-table">
