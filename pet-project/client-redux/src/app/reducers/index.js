@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import todoList from './todoList';
 import visibilityFilter from './visibilityFilter';
+import asyncTodoList from './reducers';
 
 const rootReducer = combineReducers({
-    todoList,
-    visibilityFilter
+    visibilityFilter,
+    asyncTodoList
 });
 
 export default rootReducer;

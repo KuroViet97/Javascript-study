@@ -19,7 +19,7 @@ const RemainingTodos = ({ todoList }) => {
 RemainingTodos.propTypes = {
     todoList: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.number.isRequired,
+            _id: PropTypes.string.isRequired,
             completed: PropTypes.bool.isRequired,
             content: PropTypes.string.isRequired
         })

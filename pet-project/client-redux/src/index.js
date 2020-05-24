@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import Root from './app/routers/Root';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+export default store;
 
 ReactDOM.render(
   <React.StrictMode>

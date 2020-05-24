@@ -15,7 +15,7 @@ let EditTodo = ({ todo, dispatch }) => {
                     if (!newContent.value.trim()) {
                         return;
                     }
-                    dispatch(updateTodo(todo.id, newContent.value));
+                    dispatch(updateTodo(todo._id, newContent.value));
                 }}>
                     <input
                         type="text"
@@ -36,7 +36,7 @@ let EditTodo = ({ todo, dispatch }) => {
                             className="waves-effect waves-light btn btn-update btn-margin-left"
                             onClick={(event) => {
                                 event.preventDefault();
-                                dispatch(cancelUpdateTodo(todo.id));
+                                dispatch(cancelUpdateTodo(todo._id));
                             }}
                         >
                             <i className="material-icons">remove</i>
