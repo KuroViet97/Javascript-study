@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const todoSchema = new mongoose.Schema({
     _id: {
-        type: Number,
+        type: String,
         unique: true,
         required: true
     },
@@ -13,8 +13,12 @@ const todoSchema = new mongoose.Schema({
     completed: {
         type: Boolean,
         default: false,
+    },
+    editable: {
+        type: Boolean,
+        default: false
     }
-});
+}, { versionKey: false });
 
 //create model from schema
 const todoModel = mongoose.model('Todo', todoSchema);

@@ -15,6 +15,7 @@ exports.getTodo = router.get('/todos', async (req, res, next) => {
         const todos = await database.Todo.find({});
         return success(res, todos);
     } catch (err) {
+        console.log(err);
         handleError(next, 400, 'cannot get todos');
     }
 })
@@ -24,6 +25,7 @@ exports.postTodo = router.post('/todos', async (req, res, next) => {
         const todo = await database.Todo.create(req.body);
         return success(res, todo);
     } catch (err) {
+        console.log(err);
         handleError(next, 400, 'cannot create todo');
     }
 });
@@ -35,6 +37,7 @@ exports.putTodo = router.put('/todos/:id', async (req, res, next) => {
         })
         return success(res, todo);
     } catch (error) {
+        console.log(err);
         handleError(next, 400, 'cannot update todo');
     }
 });
@@ -44,6 +47,7 @@ exports.deleteTodo = router.delete('/todos/:id', async (req, res, next) => {
         const todo = await database.Todo.findByIdAndDelete(req.params.id);
         return success(res, 'todo deleted: ' + todo);
     } catch (error) {
+        console.log(err);
         handleError(next, 400, 'cannot delete todo');
     }
 }); 
