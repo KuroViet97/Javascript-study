@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { toggleTodo, editTodo, VisibilityFilters } from '../../actions';
 import TodoList from '../../components/Todos/TodoList';
-import { fetchTodos, removeTodo, saveTodo } from '../../actions/asyncActions';
+import { fetchTodos, removeTodo, saveTodo } from '../../services/todoService';
 
 const getTodoList = (todoList, filter) => {
     switch (filter) {

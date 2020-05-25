@@ -1,4 +1,4 @@
-import { addTodo } from '../../actions/asyncActions';
+import { addTodo } from '../../services/todoService';
 import { connect } from 'react-redux';
 import AddTodo from '../../components/Todos/AddTodo';
 
