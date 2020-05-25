@@ -1,5 +1,5 @@
 import AddTodo from '../components/AddTodo';
-import { addTodo } from '../actions/actions';
+import { addTodo } from '../actions/asyncActions';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = dispatch => ({

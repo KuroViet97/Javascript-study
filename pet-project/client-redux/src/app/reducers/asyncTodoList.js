@@ -11,12 +11,10 @@ import {
     SAVE_START,
     SAVE_SUCCESS,
     SAVE_FAILURE
-} from '../actions/actions';
+} from '../actions/asyncActions';
 
 import {
-    ADD_TODO,
     UPDATE_TODO,
-    REMOVE_TODO,
     CANCEL_UPDATE_TODO,
     EDIT_TODO,
     TOGGLE_TODO
@@ -28,18 +26,8 @@ const initialState = {
     todos: []
 };
 
-const crudOperations = (state = [], action) => {
+const guiOperations = (state = [], action) => {
     switch (action.type) {
-        case ADD_TODO:
-            return [
-                ...state,
-                {
-                    _id: action._id,
-                    content: action.content,
-                    completed: false,
-                    editable: false
-                }
-            ];
         case TOGGLE_TODO:
             return state.map((todo) => {
                 if (todo._id === action._id) {
@@ -76,10 +64,6 @@ const crudOperations = (state = [], action) => {
                     return todo;
                 }
             });
-
-        case REMOVE_TODO:
-            const newState = [...state];
-            return newState.filter(state => state._id !== action._id);
         default:
             return state;
     }
@@ -160,8 +144,6 @@ const asyncTodoList = (state = initialState, action) => {
                 ...state,
                 isFetching: false,
             });
-        case ADD_TODO:
-        case REMOVE_TODO:
         case TOGGLE_TODO:
         case UPDATE_TODO:
         case CANCEL_UPDATE_TODO:
@@ -169,7 +151,7 @@ const asyncTodoList = (state = initialState, action) => {
             return Object.assign({}, state, {
                 ...state,
                 didInvaldiate: false,
-                todos: crudOperations(state.todos, action)
+                todos: guiOperations(state.todos, action)
             });
         default:
             return state;

@@ -1,35 +1,8 @@
-/**
- * Action Creators
- */
-
-//create a todo task
-import { v4 as randomUUID } from 'uuid';
-
-export const ADD_TODO = 'ADD_TODO';
-export const REMOVE_TODO = 'REMOVE_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const EDIT_TODO = 'EDIT_TODO';
 export const UPDATE_TODO = 'UPDATE_TODO';
 export const CANCEL_UPDATE_TODO = 'CANCEL_UPDATE_TODO';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
-
-const generateRandomUUID = () => {
-    const uuid = randomUUID();
-    console.log('UUID CREATED: ' + uuid);
-    return uuid;
-};
-
-export const addTodo = content => ({
-    type: ADD_TODO,
-    _id: generateRandomUUID(),
-    content
-});
-
-//remove a todo task
-export const removeTodo = _id => ({
-    type: REMOVE_TODO,
-    _id
-});
 
 //mark complete/incomplete tasks
 export const toggleTodo = _id => ({

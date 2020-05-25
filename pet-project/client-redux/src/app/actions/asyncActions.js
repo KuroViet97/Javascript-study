@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { v4 as randomUUID } from 'uuid';
-import { editTodo } from '.';
 
 const API_ENDPOINT = 'http://localhost:3001/todos/';
 
