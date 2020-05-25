@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setVisibilityFilter } from '../actions/index';
+import { setVisibilityFilter } from '../../actions/index';
 import Link from './Link';
 
 //map redux state to props state

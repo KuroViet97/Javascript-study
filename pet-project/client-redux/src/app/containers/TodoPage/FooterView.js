@@ -1,6 +1,6 @@
 import React from 'react'
-import FilterLink from '../components/FilterLink'
-import { VisibilityFilters } from '../actions'
+import FilterLink from '../../components/Footer/FilterLink'
+import { VisibilityFilters } from '../../actions'
 
 const FooterView = () => (
   <div className="left">

@@ -1,8 +1,8 @@
 import React from 'react';
-import TodoListView from './app/containers/TodoListView';
-import AddTodoView from './app/containers/AddTodoView';
-import FooterView from './app/containers/FooterView';
-import HeaderView from './app/containers/HeaderView';
+import TodoListView from './app/containers/TodoPage/TodoListView';
+import AddTodoView from './app/containers/TodoPage/AddTodoView';
+import FooterView from './app/containers/TodoPage/FooterView';
+import HeaderView from './app/containers/TodoPage/HeaderView';
 
 function App() {
   return (

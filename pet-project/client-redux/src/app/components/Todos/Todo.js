@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../App.css';
+import '../../../App.css';
 
 const Todo = ({ onSave, onComplete, onRemove, onEdit, completed, content }) => {
     const initialState = completed ? 'Done' : 'Not done';

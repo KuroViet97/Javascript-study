@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { updateTodo, cancelUpdateTodo } from '../actions/index';
+import { updateTodo, cancelUpdateTodo } from '../../actions/index';
 import { connect } from 'react-redux';
 
 //must declare as "let" for updating, freaking bug for half of a day (_ _)

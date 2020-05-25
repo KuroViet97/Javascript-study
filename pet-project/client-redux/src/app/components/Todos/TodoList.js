@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Todo from './Todo';
 import RemainingTodos from './RemainingTodos';
 import EditTodo from './EditTodo';
-import store from '../../index';
+import store from '../../../index';
 
 class TodoList extends Component {
     componentDidMount() {

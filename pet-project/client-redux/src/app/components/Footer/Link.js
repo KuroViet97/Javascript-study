@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../App.css';
+import '../../../App.css';
 import { NavLink } from 'react-router-dom';
 
 const Link = ({ active, filter, children, onClick }) => (
