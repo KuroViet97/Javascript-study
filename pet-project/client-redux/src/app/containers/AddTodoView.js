@@ -1,12 +1,10 @@
-import React from 'react';
 import AddTodo from '../components/AddTodo';
+import { addTodo } from '../actions/actions';
+import { connect } from 'react-redux';
 
-const AddTodoView = () => {
-    return (
-        <div>
-            <AddTodo />
-        </div>
-    );
-};
+const mapDispatchToProps = dispatch => ({
+    addTodo: content => dispatch(addTodo(content))
+})
 
+const AddTodoView = connect(null, mapDispatchToProps)(AddTodo);
 export default AddTodoView;

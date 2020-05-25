@@ -1,7 +1,16 @@
 import {
     INVALIDATE_TODO,
     REQUEST_TODOS,
-    RECEIVE_TODOS
+    RECEIVE_TODOS,
+    ADD_START,
+    ADD_SUCCESS,
+    ADD_FAILURE,
+    REMOVE_START,
+    REMOVE_SUCCESS,
+    REMOVE_FAILURE,
+    SAVE_START,
+    SAVE_SUCCESS,
+    SAVE_FAILURE
 } from '../actions/actions';
 
 import {
@@ -79,7 +88,7 @@ const crudOperations = (state = [], action) => {
 //compute values of next state 
 const asyncTodoList = (state = initialState, action) => {
     switch (action.type) {
-        //to cache data
+        //TODO: to cache data
         case INVALIDATE_TODO:
             return Object.assign({}, state, {
                 didInvaldiate: true
@@ -97,6 +106,60 @@ const asyncTodoList = (state = initialState, action) => {
                 didInvaldiate: false,
                 todos: [...action.todos]
             });
+
+        case ADD_START:
+            return Object.assign({}, state, {
+                isFetching: true,
+                didInvaldiate: false,
+                todos: [
+                    ...state.todos,
+                    {
+                        _id: action._id,
+                        content: action.content,
+                        completed: false,
+                        editable: false
+                    }
+                ]
+            });
+        case ADD_SUCCESS:
+        case ADD_FAILURE:
+            return Object.assign({}, state, {
+                ...state,
+                isFetching: false
+            });
+
+        case REMOVE_START:
+            return Object.assign({}, state, {
+                isFetching: true,
+                didInvaldiate: false,
+                todos: state.todos.filter(todo => todo._id !== action._id)
+            });
+        case REMOVE_SUCCESS:
+        case REMOVE_FAILURE:
+            return Object.assign({}, state, {
+                ...state,
+                isFetching: false,
+            });
+
+        case SAVE_START:
+            return Object.assign({}, state, {
+                isFetching: true,
+                didInvaldiate: false,
+                todos: state.todos.map(todo => {
+                    if (todo._id === action.todo._id) {
+                        todo.content = action.todo.content;
+                        todo.completed = action.todo.completed;
+                    }
+                    return todo;
+                })
+            })
+
+        case SAVE_SUCCESS:
+        case SAVE_FAILURE:
+            return Object.assign({}, state, {
+                ...state,
+                isFetching: false,
+            });
         case ADD_TODO:
         case REMOVE_TODO:
         case TOGGLE_TODO:
@@ -105,8 +168,9 @@ const asyncTodoList = (state = initialState, action) => {
         case EDIT_TODO:
             return Object.assign({}, state, {
                 ...state,
+                didInvaldiate: false,
                 todos: crudOperations(state.todos, action)
-            })
+            });
         default:
             return state;
     }

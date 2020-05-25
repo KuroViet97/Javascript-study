@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../../App.css';
 
-const Todo = ({ onComplete, onRemove, onEdit, completed, content }) => {
+const Todo = ({ onSave, onComplete, onRemove, onEdit, completed, content }) => {
     const initialState = completed ? 'Done' : 'Not done';
     const [taskStatus, setTaskStatus] = React.useState(initialState);
     React.useEffect(() => {
@@ -30,13 +30,19 @@ const Todo = ({ onComplete, onRemove, onEdit, completed, content }) => {
                 </label>
             </td>
             <td>
+                <button className="waves-effect waves-light btn btn-save" onClick={onSave}>
+                    <i className="material-icons">
+                        save
+                    </i>
+                </button>
+                &nbsp;
                 <button className="waves-effect waves-light btn btn-edit" onClick={onEdit}>
                     <i className="material-icons">
                         edit
                             </i>
                 </button>
-                    &nbsp;
-                    <button className="waves-effect waves-light btn btn-removal" onClick={onRemove}>
+                &nbsp;
+                <button className="waves-effect waves-light btn btn-removal" onClick={onRemove}>
                     <i className="material-icons">
                         delete
                             </i>

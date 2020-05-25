@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { toggleTodo, removeTodo, editTodo } from '../actions';
+import { toggleTodo, editTodo } from '../actions';
 import TodoList from '../components/TodoList';
 import { VisibilityFilters } from '../actions/index';
-import { fetchTodos } from '../actions/actions';
+import { fetchTodos, removeTodo, saveTodo } from '../actions/actions';
 
 const getTodoList = (todoList, filter) => {
     switch (filter) {
@@ -28,9 +28,11 @@ const mapStateToProps = state => {
 //map redux dispatch to props 
 const mapDispatchToProps = dispatch => ({
     toggleTodo: _id => dispatch(toggleTodo(_id)),
-    removeTodo: _id => dispatch(removeTodo(_id)),
     editTodo: _id => dispatch(editTodo(_id)),
-    fetchTodos: () => dispatch(fetchTodos())
+    //async functions
+    fetchTodos: () => dispatch(fetchTodos()),
+    removeTodo: _id => dispatch(removeTodo(_id)),
+    saveTodo: todo => dispatch(saveTodo(todo))
 });
 
 const TodoListView = connect(mapStateToProps, mapDispatchToProps)(TodoList);

@@ -1,19 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions/index';
 
-let AddTodo = ({ dispatch }) => {
+let AddTodo = ({ addTodo }) => {
     let input;
 
     return (
-        <>
+        <div>
             <form
                 onSubmit={event => {
                     event.preventDefault();
                     if (!input.value.trim()) {
                         return;
                     }
-                    dispatch(addTodo(input.value));
+                    addTodo(input.value);
                     input.value = '';
                 }}
             >
@@ -22,10 +21,12 @@ let AddTodo = ({ dispatch }) => {
                         <span className="flow-text">
                             <button
                                 className="waves-effect waves-light btn-large"
-                                type="submit">
+                                type="submit"
+                            >
                                 Add Todo
-                    </button>
+                            </button>
                         </span>
+
                     </div>
                     <div className="input-field col s4">
                         <span className="flow-text">
@@ -37,7 +38,7 @@ let AddTodo = ({ dispatch }) => {
                     </div>
                 </div>
             </form>
-        </>
+        </div >
     );
 };
 

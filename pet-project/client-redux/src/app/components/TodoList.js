@@ -18,6 +18,7 @@ class TodoList extends Component {
                 onComplete={() => this.props.toggleTodo(todo._id)}
                 onRemove={() => this.props.removeTodo(todo._id)}
                 onEdit={() => this.props.editTodo(todo._id)}
+                onSave={() => this.props.saveTodo(todo)}
             />
         );
 
@@ -52,7 +53,7 @@ class TodoList extends Component {
                                 <tr>
                                     <th>Task Description</th>
                                     <th>Status</th>
-                                    <th>Task Modification</th>
+                                    <th>Options</th>
                                 </tr>
                             </thead>
                             <tbody>
