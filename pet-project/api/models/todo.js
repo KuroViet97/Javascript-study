@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const todoSchema = new mongoose.Schema({
     _id: {
         type: String,
-        unique: true,
         required: true
     },
     content: {
@@ -21,6 +20,6 @@ const todoSchema = new mongoose.Schema({
 }, { versionKey: false });
 
 //create model from schema
-const todoModel = mongoose.model('Todo', todoSchema);
+const todoModel = mongoose.model('todo', todoSchema);
 
 module.exports = todoModel;

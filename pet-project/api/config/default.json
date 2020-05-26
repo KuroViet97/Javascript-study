@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb://localhost/todo-app",
+  "jwtSecret": "secret"
+}
