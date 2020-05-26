@@ -22,6 +22,7 @@ import {
 
 const initialState = {
     isFetching: false,
+    isFetched: false,
     didInvaldiate: false,
     todos: []
 };
@@ -87,6 +88,9 @@ const asyncTodoList = (state = initialState, action) => {
         case RECEIVE_TODOS:
             return Object.assign({}, state, {
                 isFetching: false,
+                // in case data is fetched, toogle this boolean
+                // array empty is a condition to be used for render different components
+                isFetched: true,
                 didInvaldiate: false,
                 todos: [...action.todos]
             });
@@ -109,7 +113,7 @@ const asyncTodoList = (state = initialState, action) => {
         case ADD_FAILURE:
             return Object.assign({}, state, {
                 ...state,
-                isFetching: false
+                isFetching: false,
             });
 
         case REMOVE_START:

@@ -6,6 +6,7 @@ import EditTodo from './EditTodo';
 import store from '../../../index';
 
 class TodoList extends Component {
+
     componentDidMount() {
         this.props.fetchTodos();
     }
@@ -35,31 +36,30 @@ class TodoList extends Component {
             )
         );
 
-        const reduxState = store.getState();
-        let isDataFetched = false;
-        if (reduxState.asyncTodoList.todos.length > 0) {
-            isDataFetched = true;
-        }
-
         return (
             <>
-                {!isDataFetched ? <p>Fetching...</p> :
+                {!store.getState().asyncTodoList.isFetched ? <p>Fetching...</p> :
                     <>
                         <RemainingTodos
                             todoList={this.props.remainingTodoList}
                         />
-                        <table className="responsive-table">
-                            <thead className="centered">
-                                <tr>
-                                    <th>Task Description</th>
-                                    <th>Status</th>
-                                    <th>Options</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {getRenderComponent(this.props.todoList)}
-                            </tbody>
-                        </table>
+                        {
+                            this.props.todoList.length > 0 ?
+                                <table className="responsive-table">
+                                    <thead className="centered">
+                                        <tr>
+                                            <th>Task Description</th>
+                                            <th>Status</th>
+                                            <th>Options</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {getRenderComponent(this.props.todoList)}
+                                    </tbody>
+                                </table>
+                                :
+                                <h4>Data is empty, please add some todos!</h4>
+                        }
                     </>
                 }
             </>

@@ -47,9 +47,6 @@ export const addTodo = (content) => (async (dispatch) => {
             content: todoAction.content
         }
 
-        console.log(newTodo.content);
-        console.log(newTodo._id);
-
         await axios.post(API_ENDPOINT, newTodo)
             .then(response => {
                 console.log(response.data);
@@ -88,7 +85,6 @@ export const saveTodo = (todo) => (async (dispatch) => {
             completed: todo.completed,
             content: todo.content
         };
-        console.log(editedTodo);
         await axios.put(`${API_ENDPOINT}${todo._id}`, editedTodo)
             .then(response => {
                 console.log(response);
