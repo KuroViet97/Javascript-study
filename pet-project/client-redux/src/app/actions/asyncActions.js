@@ -5,18 +5,18 @@ import { v4 as randomUUID } from 'uuid';
 //TODO: storing cache with INVALIDATE_TODO
 export const INVALIDATE_TODO = 'INVALIDATE_TODO';
 export const REQUEST_TODOS = 'REQUEST_TODOS';
-export const RECEIVE_TODOS = 'RECEIVE_TODOS'
+export const RECEIVE_TODOS = 'RECEIVE_TODOS';
 
 export const ADD_START = 'ADD_START';
-export const ADD_SUCCESS = 'ADD_SUCCESS'
+export const ADD_SUCCESS = 'ADD_SUCCESS';
 export const ADD_FAILURE = 'ADD_FAILURE';
 
 export const SAVE_START = 'SAVE_START';
-export const SAVE_SUCCESS = 'SAVE_SUCCESS'
+export const SAVE_SUCCESS = 'SAVE_SUCCESS';
 export const SAVE_FAILURE = 'SAVE_FAILURE';
 
 export const REMOVE_START = 'REMOVE_START';
-export const REMOVE_SUCCESS = 'REMOVE_SUCCESS'
+export const REMOVE_SUCCESS = 'REMOVE_SUCCESS';
 export const REMOVE_FAILURE = 'REMOVE_FAILURE';
 
 const generateRandomUUID = () => {
