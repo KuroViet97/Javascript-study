@@ -42,6 +42,7 @@ const userAuth = (state = initialState, action) => {
             case LOGIN_FAILURE:
             case LOGOUT_SUCCESS:
             case REGISTER_FAILURE:
+                  localStorage.removeItem('token');
                   return {
                         ...state,
                         token: null,
