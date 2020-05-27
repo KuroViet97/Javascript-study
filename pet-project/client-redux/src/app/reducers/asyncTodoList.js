@@ -154,7 +154,6 @@ const asyncTodoList = (state = initialState, action) => {
         case EDIT_TODO:
             return Object.assign({}, state, {
                 ...state,
-                didInvaldiate: false,
                 todos: guiOperations(state.todos, action)
             });
         default:

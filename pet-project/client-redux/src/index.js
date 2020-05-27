@@ -2,13 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import rootReducer from './app/reducers';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import logger from 'redux-logger'
 import thunk from 'redux-thunk';
 import * as serviceWorker from './serviceWorker';
 import Root from './app/routers/Root';
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+//redux tool extension
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+
+const store = createStore(
+  rootReducer,
+  composeEnhancer(applyMiddleware(thunk, logger))
+);
 export default store;
 
 ReactDOM.render(
