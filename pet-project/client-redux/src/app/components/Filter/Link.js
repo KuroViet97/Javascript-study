@@ -13,7 +13,7 @@ const Link = ({ active, filter, children, onClick }) => (
     }}
   >
     <button
-      className="waves-effect waves-light btn btn-large btn-margin-left"
+      className="btn btn-info btn-large btn-primary btn-margin-left"
       onClick={onClick}
       disabled={active}
     >

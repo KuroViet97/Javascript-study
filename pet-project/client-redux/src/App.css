@@ -1,9 +1,11 @@
+/** @format */
+
 .btn-margin-left {
   margin-left: 6px;
 }
 
 .btn-removal {
-  background-color: #d50000; 
+  background-color: #d50000;
 }
 
 .btn-edit {
@@ -11,9 +13,13 @@
 }
 
 .btn-update {
-  background-color: #43a047  
+  background-color: #43a047;
 }
 
 .btn-save {
-  background-color: #00e676 
+  background-color: #00e676;
+}
+
+body {
+  padding-top: 80px;
 }

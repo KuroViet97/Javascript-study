@@ -9,9 +9,9 @@ const RemainingTodos = ({ todoList }) => {
     }, [todoList]);
 
     return (
-        <div className="right">
+        <span className="float-right pb-3">
             <strong>Remaining Tasks:</strong> {remainingTodos}
-        </div>
+        </span>
 
     );
 };

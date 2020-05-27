@@ -16,26 +16,14 @@ let AddTodo = ({ addTodo }) => {
                     input.value = '';
                 }}
             >
-                <div className="row">
-                    <div className="input-field col s3 push-s7">
-                        <span className="flow-text">
-                            <button
-                                className="waves-effect waves-light btn-large"
-                                type="submit"
-                            >
-                                Add Todo
-                            </button>
-                        </span>
-
+                <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                        <button className="btn btn-primary" type="submit">Add Todo</button>
                     </div>
-                    <div className="input-field col s4">
-                        <span className="flow-text">
-                            <input
-                                ref={node => (input = node)}
-                                placeholder="Add a todo here"
-                            />
-                        </span>
-                    </div>
+                    <input
+                        className="form-control"
+                        ref={node => (input = node)}
+                        placeholder="Add a todo here" />
                 </div>
             </form>
         </div >

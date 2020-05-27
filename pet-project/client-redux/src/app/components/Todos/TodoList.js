@@ -4,7 +4,7 @@ import Todo from './Todo';
 import RemainingTodos from './RemainingTodos';
 import EditTodo from './EditTodo';
 import store from '../../../index';
-
+import Filters from '../Filter/Filters';
 class TodoList extends Component {
 
     componentDidMount() {
@@ -40,23 +40,28 @@ class TodoList extends Component {
             <>
                 {!store.getState().asyncTodoList.isFetched ? <p>Fetching...</p> :
                     <>
-                        <RemainingTodos
-                            todoList={this.props.remainingTodoList}
-                        />
+                        <div>
+                            <Filters />
+                            <RemainingTodos
+                                todoList={this.props.remainingTodoList}
+                            />
+                        </div>
                         {
                             this.props.todoList.length > 0 ?
-                                <table className="responsive-table">
-                                    <thead className="centered">
-                                        <tr>
-                                            <th>Task Description</th>
-                                            <th>Status</th>
-                                            <th>Options</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {getRenderComponent(this.props.todoList)}
-                                    </tbody>
-                                </table>
+                                <div claseName="responsive-table">
+                                    <table className="table table-dark table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Task Description</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Options</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {getRenderComponent(this.props.todoList)}
+                                        </tbody>
+                                    </table>
+                                </div>
                                 :
                                 <h4>Data is empty, please add some todos!</h4>
                         }

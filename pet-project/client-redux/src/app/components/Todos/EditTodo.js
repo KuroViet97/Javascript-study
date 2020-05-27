@@ -17,29 +17,30 @@ let EditTodo = ({ todo, dispatch }) => {
                     }
                     dispatch(updateTodo(todo._id, newContent.value));
                 }}>
-                    <input
-                        type="text"
-                        defaultValue={todo.content}
-                        required={true}
-                        placeholder="Edit todo task"
-                        ref={(node) => (newContent = node)}
-                    />
-                    <div className="right">
+                    <div>
+                        <input
+                            type="text"
+                            defaultValue={todo.content}
+                            className="input-group"
+                            required={true}
+                            placeholder="Edit todo task"
+                            ref={(node) => (newContent = node)}
+                        />
                         <button
                             form="update-todo"
                             type="submit"
-                            className="waves-effect waves-light btn btn-update btn-margin-left"
+                            className="btn btn-primary btn-update btn-margin-left float-right"
                         >
-                            <i className="material-icons">check</i>
+                            <i className="fa fa-check-square" />
                         </button>
                         <button
-                            className="waves-effect waves-light btn btn-update btn-margin-left"
+                            className="btn btn-primary btn-update btn-margin-left float-right"
                             onClick={(event) => {
                                 event.preventDefault();
                                 dispatch(cancelUpdateTodo(todo._id));
                             }}
                         >
-                            <i className="material-icons">remove</i>
+                            <i className="fa fa-minus-square" />
                         </button>
                     </div>
                 </form>

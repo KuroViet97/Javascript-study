@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import '../../../App.css';
 
 const Todo = ({ onSave, onComplete, onRemove, onEdit, completed, content }) => {
-    const initialState = completed ? 'Done' : 'Not done';
+    const initialState = completed ? ' Done' : ' Not done';
     const [taskStatus, setTaskStatus] = React.useState(initialState);
     React.useEffect(() => {
-        setTaskStatus(completed ? 'Done' : 'Not done');
+        setTaskStatus(completed ? ' Done' : ' Not done');
     }, [completed]);
 
     return (
@@ -19,10 +19,10 @@ const Todo = ({ onSave, onComplete, onRemove, onEdit, completed, content }) => {
                 {content}
             </td >
             <td>
-                <label>
+                <label className="form-check">
                     <input
                         type="checkbox"
-                        className="filled-in"
+                        className="form-check-input position-static"
                         checked={completed}
                         onChange={onComplete}
                     />
@@ -30,22 +30,16 @@ const Todo = ({ onSave, onComplete, onRemove, onEdit, completed, content }) => {
                 </label>
             </td>
             <td>
-                <button className="waves-effect waves-light btn btn-save" onClick={onSave}>
-                    <i className="material-icons">
-                        save
-                    </i>
+                <button className="btn btn-primary btn-save" onClick={onSave}>
+                    <i className="fa fa-check" />
                 </button>
                 &nbsp;
-                <button className="waves-effect waves-light btn btn-edit" onClick={onEdit}>
-                    <i className="material-icons">
-                        edit
-                            </i>
+                <button className="btn btn-primary btn-edit" onClick={onEdit}>
+                    <i className="fa fa-pencil" />
                 </button>
                 &nbsp;
-                <button className="waves-effect waves-light btn btn-removal" onClick={onRemove}>
-                    <i className="material-icons">
-                        delete
-                            </i>
+                <button className="btn btn-primary btn-removal" onClick={onRemove}>
+                    <i className="fa fa-trash-o" />
                 </button>
             </td>
         </tr >
