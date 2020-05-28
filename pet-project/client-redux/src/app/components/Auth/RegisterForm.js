@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { REGISTER_FAILURE } from '../../actions/authActions';
 class RegisterForm extends React.Component {
       constructor(props) {
             super(props);
@@ -11,20 +12,74 @@ class RegisterForm extends React.Component {
                   nameValid: false,
                   emailValid: false,
                   passwordValid: false,
-                  formValid: false
+                  formValid: false,
+                  serverMessage: null,
             };
       }
 
       static propTypes = {
-            isAuthenticated: PropTypes.func.isRequired,
+            isAuthenticated: PropTypes.bool.isRequired,
+            isRegistered: PropTypes.bool.isRequired,
             error: PropTypes.object.isRequired,
-            register: PropTypes.func.isRequired
+            register: PropTypes.func.isRequired,
+            clearError: PropTypes.func.isRequired,
+            resetRegister: PropTypes.func.isRequired
+      }
+
+      componentDidUpdate(prevProps) {
+            const { error } = this.props;
+            if (error !== prevProps.error) {
+                  // check for register error
+                  if (error.id === REGISTER_FAILURE) {
+                        this.setState({
+                              serverMessage: error.message.message,
+                        });
+                  } else {
+                        this.setState({
+                              serverMessage: null
+                        });
+                  }
+            }
+      }
+
+      componentWillUnmount() {
+            this.props.clearError();
+            this.props.resetRegister();
+      }
+
+      handleSubmit = event => {
+            this.props.clearError();
+            this.props.resetRegister();
+            this.setState({
+                  serverInfoMessage: null
+            });
+
+            event.preventDefault();
+            const { name, email, password } = this.state;
+
+            const newUser = {
+                  name,
+                  email,
+                  password
+            };
+
+            // call api to register
+            this.props.register(newUser);
+            this.resetForm();
+      };
+
+      resetForm() {
+            this.setState({
+                  name: '',
+                  email: '',
+                  password: ''
+            });
       }
 
       //handle user input
-      handleInput = (e) => {
-            const name = e.target.name;
-            const value = e.target.value;
+      handleInput = (event) => {
+            const name = event.target.name;
+            const value = event.target.value;
             this.setState({ [name]: value },
                   () => { this.validateField(name, value) });
       }
@@ -90,7 +145,7 @@ class RegisterForm extends React.Component {
 
       render() {
             return (
-                  <form className="login-form">
+                  <form onSubmit={this.handleSubmit} className="login-form">
                         <h2>Create an account</h2>
                         <div className="form-group">
                               <label htmlFor="name">Name</label>
@@ -138,6 +193,20 @@ class RegisterForm extends React.Component {
                         >
                               Create Account
                         </button>
+                        {this.state.serverMessage && !this.props.isRegistered ?
+                              <div className="text-danger">
+                                    {this.state.serverMessage}
+                              </div>
+                              : null
+                        }
+
+                        {this.props.isRegistered ?
+                              <div className="text-success">
+                                    Account was created successfully!
+                              </div>
+                              : null
+                        }
+
                   </form>
             );
       }

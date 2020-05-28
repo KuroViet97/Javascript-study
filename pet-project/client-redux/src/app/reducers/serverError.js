@@ -23,6 +23,6 @@ const serverError = (state = initialState, action) => {
             default:
                   return state;
       }
-}
+};
 
 export default serverError;

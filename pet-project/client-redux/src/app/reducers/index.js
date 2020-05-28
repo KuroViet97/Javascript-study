@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import visibilityFilter from './visibilityFilter';
 import asyncTodoList from './asyncTodoList';
-import auth from './auth';
+import userAuth from './userAuth';
 import serverError from './serverError';
 
 const rootReducer = combineReducers({
     visibilityFilter,
     asyncTodoList,
-    auth,
-    serverError
+    serverError,
+    userAuth,
 });
 
 export default rootReducer;

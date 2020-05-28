@@ -6,14 +6,16 @@ import {
       REGISTER_FAILURE,
       AUTH_ERROR,
       USER_LOADING,
-      USER_LOADED
+      USER_LOADED,
+      REGISTER_STATUS_RESET
 } from '../actions/authActions';
 
 const initialState = {
       token: localStorage.getItem('token'),
-      isAuthenticated: null,
+      isAuthenticated: false,
+      isRegistered: false,
       isLoading: false,
-      user: null
+      user: null,
 };
 
 const userAuth = (state = initialState, action) => {
@@ -21,21 +23,32 @@ const userAuth = (state = initialState, action) => {
             case USER_LOADING:
                   return {
                         ...state,
+                        isRegistered: false,
                         isLoading: true
                   };
             case USER_LOADED:
                   return {
                         ...state,
                         isAuthenticated: true,
+                        isRegistered: false,
                         isLoading: false,
                         user: action.payload
                   };
             case LOGIN_SUCCESS:
+                  localStorage.setItem('token', action.payload.token);
+                  return {
+                        ...state,
+                        isRegistered: false,
+                        user: action.payload,
+                        isAuthenticated: true,
+                        isLoading: false
+                  };
             case REGISTER_SUCCESS:
                   localStorage.setItem('token', action.payload.token);
                   return {
                         ...state,
-                        ...action.payload,
+                        isRegistered: true,
+                        user: action.payload,
                         isAuthenticated: true,
                         isLoading: false
                   };
@@ -45,11 +58,16 @@ const userAuth = (state = initialState, action) => {
             case REGISTER_FAILURE:
                   localStorage.removeItem('token');
                   return {
-                        ...state,
+                        isRegistered: false,
                         token: null,
                         user: null,
                         isAuthenticated: false,
                         isLoading: false
+                  };
+            case REGISTER_STATUS_RESET:
+                  return {
+                        ...state,
+                        isRegistered: false
                   };
             default:
                   return state;
