@@ -48,8 +48,10 @@ const Todo = ({ onSave, onComplete, onRemove, onEdit, completed, content }) => {
 }
 
 Todo.propTypes = {
+    onSave: PropTypes.func.isRequired,
     onComplete: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
     completed: PropTypes.bool.isRequired,
     content: PropTypes.string.isRequired,
 }

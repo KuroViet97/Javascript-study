@@ -85,7 +85,18 @@ TodoList.propTypes = {
             content: PropTypes.string.isRequired
         })
     ),
-    toggleTodo: PropTypes.func.isRequired
+    remainingTodoList: PropTypes.arrayOf(
+        PropTypes.shape({
+            _id: PropTypes.string.isRequired,
+            completed: PropTypes.bool.isRequired,
+            content: PropTypes.string.isRequired
+        })
+    ),
+    toggleTodo: PropTypes.func.isRequired,
+    editTodo: PropTypes.func.isRequired,
+    fetchTodos: PropTypes.func.isRequired,
+    removeTodo: PropTypes.func.isRequired,
+    saveTodo: PropTypes.func.isRequired
 };
 
 export default TodoList;

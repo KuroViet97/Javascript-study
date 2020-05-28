@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 let AddTodo = ({ addTodo }) => {
     let input;
@@ -30,4 +30,8 @@ let AddTodo = ({ addTodo }) => {
     );
 };
 
-export default connect()(AddTodo);
+AddTodo.propTypes = {
+    addTodo: PropTypes.func.isRequired
+}
+
+export default AddTodo;

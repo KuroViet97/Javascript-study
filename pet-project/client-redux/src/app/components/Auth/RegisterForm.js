@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 class RegisterForm extends React.Component {
       constructor(props) {
             super(props);
@@ -13,6 +13,12 @@ class RegisterForm extends React.Component {
                   passwordValid: false,
                   formValid: false
             };
+      }
+
+      static propTypes = {
+            isAuthenticated: PropTypes.func.isRequired,
+            error: PropTypes.object.isRequired,
+            register: PropTypes.func.isRequired
       }
 
       //handle user input
