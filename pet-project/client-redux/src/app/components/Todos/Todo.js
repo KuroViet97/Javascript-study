@@ -37,6 +37,7 @@ const Todo = ({ onSave, onComplete, onRemove, onEdit, completed, content }) => {
                 <button className="btn btn-primary btn-edit" onClick={onEdit}>
                     <i className="fa fa-pencil" />
                 </button>
+
                 &nbsp;
                 <button className="btn btn-primary btn-removal" onClick={onRemove}>
                     <i className="fa fa-trash-o" />
@@ -50,7 +51,7 @@ Todo.propTypes = {
     onComplete: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
     completed: PropTypes.bool.isRequired,
-    content: PropTypes.string.isRequired
+    content: PropTypes.string.isRequired,
 }
 
 export default Todo;

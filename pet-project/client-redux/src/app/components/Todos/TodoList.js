@@ -5,6 +5,7 @@ import RemainingTodos from './RemainingTodos';
 import EditTodo from './EditTodo';
 import store from '../../../index';
 import Filters from '../Filter/Filters';
+import Spinner from '../SharedUI/Spinner';
 class TodoList extends Component {
 
     componentDidMount() {
@@ -38,17 +39,21 @@ class TodoList extends Component {
 
         return (
             <>
-                {!store.getState().asyncTodoList.isFetched ? <p>Fetching...</p> :
+                {!store.getState().asyncTodoList.isFetched ? <Spinner /> :
                     <>
-                        <div>
-                            <Filters />
-                            <RemainingTodos
-                                todoList={this.props.remainingTodoList}
-                            />
+                        <div className="pb-5">
+                            <span>
+                                <Filters />
+                            </span>
+                            <span className="float-right">
+                                <RemainingTodos
+                                    todoList={this.props.remainingTodoList}
+                                />
+                            </span>
                         </div>
                         {
                             this.props.todoList.length > 0 ?
-                                <div claseName="responsive-table">
+                                <div className="responsive-table">
                                     <table className="table table-dark table-bordered">
                                         <thead>
                                             <tr>

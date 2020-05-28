@@ -1,5 +1,5 @@
 import React from 'react';
-import '../..'
+import { NavLink } from 'react-router-dom';
 
 const HeaderView = () => (
     <nav className="navbar navbar-dark bg-dark navbar-expand-sm fixed-top">
@@ -7,7 +7,7 @@ const HeaderView = () => (
             Todo Application
         </span>
         <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbar-items"
@@ -19,13 +19,46 @@ const HeaderView = () => (
         <div className="collapse navbar-collapse" id="navbar-items">
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                    <a className="nav-link" href="/todo"><span className="fa fa-home"> Home</span></a>
+                    <div className="nav-link">
+                        <NavLink
+                            className="nav-link fa fa-home"
+                            to={"/todo"}
+                            activeStyle={{
+                                textDecoration: "none",
+                                color: 'back'
+                            }}
+                        >
+                            &nbsp; Home
+                        </NavLink>
+                    </div>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/register"><span className="fa fa-user"> Register</span></a>
+                    <div className="nav-link">
+                        <NavLink
+                            className="nav-link fa fa-user"
+                            to={"/register"}
+                            activeStyle={{
+                                textDecoration: "none",
+                                color: 'back'
+                            }}
+                        >
+                            &nbsp; Register
+                        </NavLink>
+                    </div>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/login"><span className="fa fa-signin"> Login</span></a>
+                    <div className="nav-link">
+                        <NavLink
+                            className="nav-link fa fa-signin"
+                            to={"/login"}
+                            activeStyle={{
+                                textDecoration: "none",
+                                color: 'back'
+                            }}
+                        >
+                            &nbsp; Login
+                        </NavLink>
+                    </div>
                 </li>
             </ul>
         </div>

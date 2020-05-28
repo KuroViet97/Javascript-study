@@ -1,9 +1,10 @@
 import React from 'react';
-import TodoListView from './app/containers/TodoPage/TodoListView';
-import AddTodoView from './app/containers/TodoPage/AddTodoView';
 import HeaderView from './app/containers/HeaderView';
 import { loadUser } from './app/actions/authActions';
 import store from './index';
+import { Route, Switch } from 'react-router-dom';
+import TodoView from './app/containers/TodoPage/TodoView';
+import RegisterForm from './app/components/Auth/RegisterForm';
 
 class App extends React.Component {
       componentDidMount() {
@@ -12,16 +13,14 @@ class App extends React.Component {
 
       render() {
             return (
-                  <div>
-                        <div className="container">
-                              <HeaderView />
-                        </div>
-                        <div className="container">
-                              <AddTodoView />
-                              <TodoListView />
-                        </div>
+                  <div className="container">
+                        <HeaderView />
+                        <Switch>
+                              <Route path="/register" component={RegisterForm} />
+                              <Route path="/todo" exact component={TodoView} />
+                              <Route path="/" exact component={TodoView} />
+                        </Switch>
                   </div>
-
             );
       }
 }
