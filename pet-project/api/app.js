@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var cors = require('cors');
+const corsOptions = {
+  exposedHeaders: 'x-auth-token'
+};
 
 var app = express();
 
@@ -13,7 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // core middleware
-app.use(cors());
+app.use(cors(corsOptions));
 
 
 //connect mongodb
