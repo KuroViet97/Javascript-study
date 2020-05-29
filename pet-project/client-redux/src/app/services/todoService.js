@@ -20,13 +20,11 @@ import { returnErrors } from '../actions/errorActions';
 
 import axios from 'axios';
 
-const API_ENDPOINT = 'http://localhost:3001/todos/';
-
 export const fetchTodos = () => ((dispatch, getState) => {
     dispatch(requestTodos());
     console.log("REQUESTING...");
     console.log("FETCHING...");
-    axios.get(API_ENDPOINT, tokenConfig(getState))
+    axios.get('/todos', tokenConfig(getState))
         .then(response => {
             console.log(response.data);
             dispatch(receiveTodos(response.data));
@@ -48,7 +46,7 @@ export const addTodo = (content) => ((dispatch, getState) => {
         content: todoAction.content
     }
 
-    axios.post(API_ENDPOINT, newTodo, tokenConfig(getState))
+    axios.post('/todos', newTodo, tokenConfig(getState))
         .then(response => {
             console.log(response.data);
             dispatch(addTodoSuccess());
@@ -65,7 +63,7 @@ export const addTodo = (content) => ((dispatch, getState) => {
 export const removeTodo = (_id) => ((dispatch, getState) => {
     console.log("REMOVE START...");
     dispatch(removeTodoStart(_id));
-    axios.delete(`${API_ENDPOINT}${_id}`, tokenConfig(getState))
+    axios.delete(`/todos/${_id}`, tokenConfig(getState))
         .then(response => {
             console.log(response);
             dispatch(removeTodoSuccess());
@@ -88,7 +86,7 @@ export const saveTodo = (todo) => ((dispatch, getState) => {
         completed: todo.completed,
         content: todo.content
     };
-    axios.put(`${API_ENDPOINT}${todo._id}`, editedTodo, tokenConfig(getState))
+    axios.put(`/todos/${todo._id}`, editedTodo, tokenConfig(getState))
         .then(response => {
             console.log(response);
             dispatch(saveTodoSuccess());

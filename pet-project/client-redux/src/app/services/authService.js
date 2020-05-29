@@ -18,7 +18,7 @@ export const loadUser = () => (dispatch, getState) => {
       // user loading
       dispatch(userLoading());
 
-      axios.get('http://localhost:3001/auth/user', tokenConfig(getState))
+      axios.get('/auth/user', tokenConfig(getState))
             .then(res => {
                   dispatch(userLoaded(res));
             }).catch(err => {
@@ -37,7 +37,7 @@ export const register = ({ name, email, password }) => dispatch => {
             password: password
       }
 
-      axios.post('http://localhost:3001/users', user)
+      axios.post('/users', user)
             .then(res => dispatch(registerSuccess(res)))
             .catch(err => {
                   console.log(err);
@@ -53,7 +53,7 @@ export const login = ({ email, password }) => dispatch => {
             password: password
       };
 
-      axios.post('http://localhost:3001/auth', user)
+      axios.post('/auth', user)
             .then(res => dispatch(loginSuccess(res)))
             .catch(err => {
                   console.log(err);
