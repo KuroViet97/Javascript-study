@@ -35,6 +35,20 @@ const HeaderView = () => (
                 <li className="nav-item">
                     <div className="nav-link">
                         <NavLink
+                            className="nav-link fa fa-sign-in"
+                            to={"/login"}
+                            activeStyle={{
+                                textDecoration: "none",
+                                color: 'back'
+                            }}
+                        >
+                            &nbsp; Login
+                        </NavLink>
+                    </div>
+                </li>
+                <li className="nav-item">
+                    <div className="nav-link">
+                        <NavLink
                             className="nav-link fa fa-user"
                             to={"/register"}
                             activeStyle={{
@@ -49,14 +63,14 @@ const HeaderView = () => (
                 <li className="nav-item">
                     <div className="nav-link">
                         <NavLink
-                            className="nav-link fa fa-signin"
-                            to={"/login"}
+                            className="nav-link fa fa-sign-out"
+                            to={"/logout"}
                             activeStyle={{
                                 textDecoration: "none",
                                 color: 'back'
                             }}
                         >
-                            &nbsp; Login
+                            &nbsp; Logout
                         </NavLink>
                     </div>
                 </li>

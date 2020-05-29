@@ -15,22 +15,25 @@ import {
     saveTodoFailure
 } from '../actions/asyncActions';
 
+import { tokenConfig } from '../actions/authActions';
+import { returnErrors } from '../actions/errorActions';
+
 import axios from 'axios';
 
 const API_ENDPOINT = 'http://localhost:3001/todos/';
 
-export const fetchTodos = () => ((dispatch) => {
+export const fetchTodos = () => ((dispatch, getState) => {
     dispatch(requestTodos());
     console.log("REQUESTING...");
     console.log("FETCHING...");
-    axios.get(API_ENDPOINT)
+    axios.get(API_ENDPOINT, tokenConfig(getState))
         .then(response => {
             console.log(response.data);
             dispatch(receiveTodos(response.data));
         })
         .then(() => console.log("FINISHED FETCHING!"))
         .catch(err => {
-            console.log(err);
+            dispatch(returnErrors(err.response.data, err.response.status));
         });
 });
 
@@ -54,6 +57,7 @@ export const addTodo = (content) => ((dispatch) => {
         .catch(err => {
             console.log(err);
             dispatch(addTodoFailure(err));
+            dispatch(returnErrors(err.response.data, err.response.status));
         });
 });
 
@@ -70,6 +74,7 @@ export const removeTodo = (_id) => ((dispatch) => {
         .catch(err => {
             console.log(err);
             dispatch(removeTodoFailure(err));
+            dispatch(returnErrors(err.response.data, err.response.status));
         });
 });
 
@@ -92,5 +97,6 @@ export const saveTodo = (todo) => ((dispatch) => {
         .catch(err => {
             console.log(err);
             dispatch(saveTodoFailure());
+            dispatch(returnErrors(err.response.data, err.response.status));
         });
 });

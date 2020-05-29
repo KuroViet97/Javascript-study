@@ -1,36 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { REGISTER_FAILURE } from '../../actions/authActions';
-class RegisterForm extends React.Component {
+import { LOGIN_FAILURE } from '../../actions/authActions';
+
+class LoginForm extends React.Component {
       constructor(props) {
             super(props);
             this.state = {
-                  name: '',
                   email: '',
                   password: '',
-                  formErrors: { name: '', email: '', password: '' },
-                  nameValid: false,
+                  formErrors: { email: '', password: '' },
                   emailValid: false,
                   passwordValid: false,
                   formValid: false,
                   serverMessage: null,
             };
+
+
       }
 
       static propTypes = {
             isAuthenticated: PropTypes.bool.isRequired,
-            isRegistered: PropTypes.bool.isRequired,
             error: PropTypes.object.isRequired,
-            register: PropTypes.func.isRequired,
+            login: PropTypes.func.isRequired,
             clearError: PropTypes.func.isRequired,
-            resetRegister: PropTypes.func.isRequired
+      }
+
+      routeChange = () => {
+            if (this.props.isAuthenticated) {
+                  this.props.history.push('/todo');
+                  return;
+            }
+            return;
       }
 
       componentDidUpdate(prevProps) {
             const { error } = this.props;
             if (error !== prevProps.error) {
                   // check for register error
-                  if (error.id === REGISTER_FAILURE) {
+                  if (error.id === LOGIN_FAILURE) {
                         this.setState({
                               serverMessage: error.message.message,
                         });
@@ -40,38 +47,28 @@ class RegisterForm extends React.Component {
                         });
                   }
             }
-      }
-
-      componentWillUnmount() {
-            if (this.props.isRegistered) {
-                  this.props.resetRegister();
-            }
+            this.routeChange();
       }
 
       handleSubmit = event => {
             event.preventDefault();
             this.props.clearError();
-            this.props.resetRegister();
             this.setState({
                   serverInfoMessage: null
             });
 
-            const { name, email, password } = this.state;
-
-            const newUser = {
-                  name,
+            const { email, password } = this.state;
+            const user = {
                   email,
                   password
             };
 
             // call api to register
-            this.props.register(newUser);
-            this.resetForm();
+            this.props.login(user);
       };
 
       resetForm() {
             this.setState({
-                  name: '',
                   email: '',
                   password: ''
             });
@@ -88,21 +85,16 @@ class RegisterForm extends React.Component {
       // validate field 
       validateField(fieldName, value) {
             let fieldValidationErrors = this.state.formErrors;
-            let nameValid = this.state.nameValid;
             let emailValid = this.state.emailValid;
             let passwordValid = this.state.passwordValid;
             switch (fieldName) {
-                  case 'name':
-                        nameValid = value.match(/^(?=[a-zA-Z ]{2,30}$)[A-Z][a-z]+(?:[ ]+[a-zA-Z][a-z]+)*$/);
-                        fieldValidationErrors.name = nameValid ? '' : ' is invalid';
-                        break;
                   case 'email':
                         emailValid = value.match(/^([\w.]+)@([\w-]+\.)+([\w]{2,})$/i);
                         fieldValidationErrors.email = emailValid ? '' : ' is invalid';
                         break;
                   case 'password':
                         passwordValid = value.length >= 6;
-                        fieldValidationErrors.password = passwordValid ? '' : ' is too short';
+                        fieldValidationErrors.password = passwordValid ? '' : ' you sure it is this short?';
                         break;
                   default:
                         break;
@@ -110,7 +102,6 @@ class RegisterForm extends React.Component {
 
             this.setState({
                   formErrors: fieldValidationErrors,
-                  nameValid: nameValid,
                   emailValid: emailValid,
                   passwordValid: passwordValid
             }, this.validateForm);
@@ -119,15 +110,13 @@ class RegisterForm extends React.Component {
       // validate the whole form 
       validateForm() {
             this.setState({
-                  formValid: this.state.emailValid && this.state.nameValid && this.state.passwordValid
+                  formValid: this.state.emailValid && this.state.passwordValid
             });
       };
 
       // same as cross the completed todo
       errorClass(fieldValue, error) {
-            if (fieldValue.length > 0 && error.length === 0) {
-                  return 'is-valid';
-            } else if (fieldValue.length > 0 && error.length > 0) {
+            if (fieldValue.length > 0 && error.length > 0) {
                   return 'is-invalid';
             }
             return;
@@ -147,20 +136,7 @@ class RegisterForm extends React.Component {
       render() {
             return (
                   <form onSubmit={this.handleSubmit} className="simple-form">
-                        <h2>Create an account</h2>
-                        <div className="form-group">
-                              <label htmlFor="name">Name</label>
-                              <input
-                                    type="text"
-                                    required
-                                    className={`form-control  ${this.errorClass(this.state.name, this.state.formErrors.name)}`}
-                                    name="name"
-                                    placeholder="Enter your full name"
-                                    value={this.state.name}
-                                    onChange={this.handleInput}
-                              />
-                              {this.showError('name')}
-                        </div>
+                        <h2>Please login to use application</h2>
                         <div className="form-group">
                               <label htmlFor="email">Email</label>
                               <input
@@ -193,19 +169,12 @@ class RegisterForm extends React.Component {
                                     className="btn btn-primary"
                                     disabled={!this.state.formValid}
                               >
-                                    Create Account
+                                    Login
                         </button>
-                              {this.state.serverMessage && !this.props.isRegistered ?
+                              {this.state.serverMessage ?
                                     <div className="text-danger">
                                           {this.state.serverMessage}
                                     </div>
-                                    : null
-                              }
-
-                              {this.props.isRegistered ?
-                                    <div className="text-success">
-                                          Account was created successfully!
-                              </div>
                                     : null
                               }
                         </div>
@@ -214,4 +183,4 @@ class RegisterForm extends React.Component {
       }
 }
 
-export default RegisterForm;
+export default LoginForm;

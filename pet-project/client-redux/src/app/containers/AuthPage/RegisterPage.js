@@ -15,6 +15,6 @@ const mapDispatchToProps = dispatch => ({
       resetRegister: () => dispatch(resetRegister())
 });
 
-const RegisterView = connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
+const RegisterPage = connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
 
-export default RegisterView;
+export default RegisterPage;

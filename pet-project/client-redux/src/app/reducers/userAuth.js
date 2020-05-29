@@ -32,23 +32,23 @@ const userAuth = (state = initialState, action) => {
                         isAuthenticated: true,
                         isRegistered: false,
                         isLoading: false,
-                        user: action.payload
+                        user: action.payload.user
                   };
             case LOGIN_SUCCESS:
                   localStorage.setItem('token', action.payload.token);
                   return {
-                        ...state,
+                        token: localStorage.getItem('token'),
                         isRegistered: false,
-                        user: action.payload,
+                        user: action.payload.user,
                         isAuthenticated: true,
                         isLoading: false
                   };
             case REGISTER_SUCCESS:
                   localStorage.setItem('token', action.payload.token);
                   return {
-                        ...state,
+                        token: localStorage.getItem('token'),
                         isRegistered: true,
-                        user: action.payload,
+                        user: action.payload.user,
                         isAuthenticated: true,
                         isLoading: false
                   };
