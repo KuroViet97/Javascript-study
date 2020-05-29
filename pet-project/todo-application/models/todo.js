@@ -22,4 +22,7 @@ const todoSchema = new mongoose.Schema({
 //create model from schema
 const todoModel = mongoose.model('todo', todoSchema);
 
-module.exports = todoModel;
+module.exports = {
+    todoModel,
+    todoSchema
+}
