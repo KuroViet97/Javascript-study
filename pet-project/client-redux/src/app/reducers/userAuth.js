@@ -35,6 +35,7 @@ const userAuth = (state = initialState, action) => {
                         user: action.payload.user
                   };
             case LOGIN_SUCCESS:
+                  localStorage.setItem('username', action.payload.user.name)
                   localStorage.setItem('token', action.payload.token);
                   return {
                         token: localStorage.getItem('token'),
@@ -44,18 +45,16 @@ const userAuth = (state = initialState, action) => {
                         isLoading: false
                   };
             case REGISTER_SUCCESS:
-                  localStorage.setItem('token', action.payload.token);
                   return {
-                        token: localStorage.getItem('token'),
+                        ...state,
                         isRegistered: true,
                         user: action.payload.user,
-                        isAuthenticated: true,
-                        isLoading: false
                   };
             case AUTH_ERROR:
             case LOGIN_FAILURE:
             case LOGOUT_SUCCESS:
             case REGISTER_FAILURE:
+                  localStorage.removeItem('username');
                   localStorage.removeItem('token');
                   return {
                         isRegistered: false,

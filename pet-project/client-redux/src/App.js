@@ -1,5 +1,5 @@
 import React from 'react';
-import { loadUser } from './app/actions/authActions';
+import { loadUser } from './app/services/authService';
 import store from './index';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import RegisterPage from './app/containers/AuthPage/RegisterPage';

@@ -1,4 +1,4 @@
-import { logout } from '../../actions/authActions';
+import { logoutSuccess } from '../../actions/authActions';
 import { connect } from 'react-redux';
 import Navbar from '../../components/Navbar/Navbar';
 
@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-      logout: () => dispatch(logout())
+      logout: () => dispatch(logoutSuccess())
 });
 
 const Navbarview = connect(mapStateToProps, mapDispatchToProps)(Navbar);

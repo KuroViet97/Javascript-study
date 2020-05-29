@@ -15,7 +15,7 @@ import {
     saveTodoFailure
 } from '../actions/asyncActions';
 
-import { tokenConfig } from '../actions/authActions';
+import { tokenConfig } from './authService';
 import { returnErrors } from '../actions/errorActions';
 
 import axios from 'axios';
@@ -38,7 +38,7 @@ export const fetchTodos = () => ((dispatch, getState) => {
 });
 
 //add todo
-export const addTodo = (content) => ((dispatch) => {
+export const addTodo = (content) => ((dispatch, getState) => {
     console.log("ADD START...");
     const todoAction = addTodoStart(content);
     dispatch(todoAction);
@@ -48,7 +48,7 @@ export const addTodo = (content) => ((dispatch) => {
         content: todoAction.content
     }
 
-    axios.post(API_ENDPOINT, newTodo)
+    axios.post(API_ENDPOINT, newTodo, tokenConfig(getState))
         .then(response => {
             console.log(response.data);
             dispatch(addTodoSuccess());
@@ -62,10 +62,10 @@ export const addTodo = (content) => ((dispatch) => {
 });
 
 //remove todo
-export const removeTodo = (_id) => ((dispatch) => {
+export const removeTodo = (_id) => ((dispatch, getState) => {
     console.log("REMOVE START...");
     dispatch(removeTodoStart(_id));
-    axios.delete(`${API_ENDPOINT}${_id}`)
+    axios.delete(`${API_ENDPOINT}${_id}`, tokenConfig(getState))
         .then(response => {
             console.log(response);
             dispatch(removeTodoSuccess());
@@ -79,7 +79,7 @@ export const removeTodo = (_id) => ((dispatch) => {
 });
 
 //save todo
-export const saveTodo = (todo) => ((dispatch) => {
+export const saveTodo = (todo) => ((dispatch, getState) => {
     console.log("SAVE START...");
     dispatch(saveTodoStart(todo));
 
@@ -88,7 +88,7 @@ export const saveTodo = (todo) => ((dispatch) => {
         completed: todo.completed,
         content: todo.content
     };
-    axios.put(`${API_ENDPOINT}${todo._id}`, editedTodo)
+    axios.put(`${API_ENDPOINT}${todo._id}`, editedTodo, tokenConfig(getState))
         .then(response => {
             console.log(response);
             dispatch(saveTodoSuccess());

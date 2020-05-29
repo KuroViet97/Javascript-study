@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Navbar = ({ isAuthenticated, logout }) => {
+const Navbar = ({ isAuthenticated, userName, logout }) => {
 
       const showLoginAndRegister = () => (
             <>
@@ -41,13 +41,20 @@ const Navbar = ({ isAuthenticated, logout }) => {
             <>
                   <li className="nav-item">
                         <div className="nav-link">
+                              <div className="nav-link fa fa-smile-o">
+                                    &nbsp; Welcome, {localStorage.getItem('username')}
+                              </div>
+                        </div>
+                  </li>
+                  <li className="nav-item">
+                        <div className="nav-link">
                               <NavLink
                                     className="nav-link fa fa-sign-out"
                                     to={"/login"}
                                     onClick={logout}
                               >
                                     &nbsp; Logout
-                                    </NavLink>
+                              </NavLink>
                         </div>
                   </li>
             </>

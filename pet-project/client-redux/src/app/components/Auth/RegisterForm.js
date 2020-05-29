@@ -23,7 +23,8 @@ class RegisterForm extends React.Component {
             error: PropTypes.object.isRequired,
             register: PropTypes.func.isRequired,
             clearError: PropTypes.func.isRequired,
-            resetRegister: PropTypes.func.isRequired
+            resetRegister: PropTypes.func.isRequired,
+            userEmail: PropTypes.string
       }
 
       componentDidUpdate(prevProps) {
@@ -204,8 +205,8 @@ class RegisterForm extends React.Component {
 
                               {this.props.isRegistered ?
                                     <div className="text-success">
-                                          Account was created successfully!
-                              </div>
+                                          Email registered: {this.props.userEmail}
+                                    </div>
                                     : null
                               }
                         </div>

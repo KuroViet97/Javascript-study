@@ -1,11 +1,13 @@
 import RegisterForm from '../../components/Auth/RegisterForm';
-import { register, resetRegister } from '../../actions/authActions';
+import { register } from '../../services/authService';
+import { resetRegister } from '../../actions/authActions';
 import { connect } from 'react-redux';
 import { clearErrors } from '../../actions/errorActions';
 
 const mapStateToProps = state => ({
       isAuthenticated: state.userAuth.isAuthenticated,
       isRegistered: state.userAuth.isRegistered,
+      userEmail: state.userAuth.user ? state.userAuth.user.email : null,
       error: state.serverError
 });
 
