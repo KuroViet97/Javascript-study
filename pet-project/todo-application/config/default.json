@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb://localhost/todo-app",
+  "mongoURI": "mongodb+srv://vietnguyenthe97:langthanG*1992@cluster0-mm5jv.mongodb.net/app?retryWrites=true&w=majority",
   "jwtSecret": "secret"
 }

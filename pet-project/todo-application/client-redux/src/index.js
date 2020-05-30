@@ -8,13 +8,13 @@ import thunk from 'redux-thunk';
 import * as serviceWorker from './serviceWorker';
 import Root from './app/routers/Root';
 
-//redux tool extension
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+//redux tool extension for development only
+//const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
 const store = createStore(
   rootReducer,
-  composeEnhancer(applyMiddleware(thunk, logger))
+  applyMiddleware(thunk, logger)
 );
 export default store;
 

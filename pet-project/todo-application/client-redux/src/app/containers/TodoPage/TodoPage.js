@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 class TodoPage extends React.Component {
       componentDidMount() {
-            if (!this.props.isAuthenticated) {
+            if (!localStorage.getItem('token')) {
                   this.props.history.push('/login');
             }
       }
