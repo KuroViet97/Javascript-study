@@ -20,7 +20,8 @@ const getTodoList = (todoList, filter) => {
 const mapStateToProps = state => {
     return {
         todoList: getTodoList(state.asyncTodoList.todos, state.visibilityFilter),
-        remainingTodoList: getTodoList(state.asyncTodoList.todos, VisibilityFilters.SHOW_ACTIVE)
+        remainingTodoList: getTodoList(state.asyncTodoList.todos, VisibilityFilters.SHOW_ACTIVE),
+        isDataFetched: state.asyncTodoList.isFetched,
     }
 };
 

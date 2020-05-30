@@ -4,6 +4,9 @@ export const UPDATE_TODO = 'UPDATE_TODO';
 export const CANCEL_UPDATE_TODO = 'CANCEL_UPDATE_TODO';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
+// remove fetched data after logout
+export const WIPE_DATA = 'WIPE_DATA';
+
 //mark complete/incomplete tasks
 export const toggleTodo = _id => ({
     type: TOGGLE_TODO,
@@ -40,3 +43,7 @@ export const VisibilityFilters = {
     SHOW_COMPLETED: 'SHOW_COMPLETED',
     SHOW_ACTIVE: 'SHOW_ACTIVE'
 };
+
+export const wipeData = () => ({
+    type: WIPE_DATA
+});

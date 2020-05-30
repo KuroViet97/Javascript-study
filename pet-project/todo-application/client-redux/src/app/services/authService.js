@@ -18,7 +18,7 @@ export const loadUser = () => (dispatch, getState) => {
       // user loading
       dispatch(userLoading());
 
-      axios.get('/auth/user', tokenConfig(getState))
+      axios.get('/api/auth/user', tokenConfig(getState))
             .then(res => {
                   dispatch(userLoaded(res));
             }).catch(err => {
@@ -37,7 +37,7 @@ export const register = ({ name, email, password }) => dispatch => {
             password: password
       }
 
-      axios.post('/users', user)
+      axios.post('/api/users', user)
             .then(res => dispatch(registerSuccess(res)))
             .catch(err => {
                   console.log(err);
@@ -53,7 +53,7 @@ export const login = ({ email, password }) => dispatch => {
             password: password
       };
 
-      axios.post('/auth', user)
+      axios.post('/api/auth', user)
             .then(res => dispatch(loginSuccess(res)))
             .catch(err => {
                   console.log(err);

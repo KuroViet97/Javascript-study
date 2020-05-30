@@ -1,6 +1,7 @@
+const todoSchema = require('./todo').todoSchema;
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
+const userTodosSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -14,6 +15,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    todos: [
+        todoSchema
+    ],
     registered_date: {
         type: Date,
         required: true,
@@ -22,6 +26,6 @@ const UserSchema = new mongoose.Schema({
 });
 
 //create model from schema
-const userModel = mongoose.model('user', UserSchema);
+const userTodosModel = mongoose.model('userTodos', userTodosSchema);
 
-module.exports = userModel;
+module.exports = userTodosModel;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Todo from './Todo';
 import RemainingTodos from './RemainingTodos';
 import EditTodo from './EditTodo';
-import store from '../../../index';
 import Filters from '../Filter/Filters';
 import Spinner from '../SharedUI/Spinner';
 class TodoList extends Component {
@@ -11,6 +10,29 @@ class TodoList extends Component {
     componentDidMount() {
         this.props.fetchTodos();
     }
+
+    static propTypes = {
+        isDataFetched: PropTypes.bool.isRequired,
+        todoList: PropTypes.arrayOf(
+            PropTypes.shape({
+                _id: PropTypes.string.isRequired,
+                completed: PropTypes.bool.isRequired,
+                content: PropTypes.string.isRequired
+            })
+        ),
+        remainingTodoList: PropTypes.arrayOf(
+            PropTypes.shape({
+                _id: PropTypes.string.isRequired,
+                completed: PropTypes.bool.isRequired,
+                content: PropTypes.string.isRequired
+            })
+        ),
+        toggleTodo: PropTypes.func.isRequired,
+        editTodo: PropTypes.func.isRequired,
+        fetchTodos: PropTypes.func.isRequired,
+        removeTodo: PropTypes.func.isRequired,
+        saveTodo: PropTypes.func.isRequired,
+    };
 
     render() {
         const renderTodo = (todo) => (
@@ -39,7 +61,7 @@ class TodoList extends Component {
 
         return (
             <>
-                {!store.getState().asyncTodoList.isFetched ? <Spinner /> :
+                {!this.props.isDataFetched ? <Spinner /> :
                     <>
                         <div className="pb-5">
                             <span>
@@ -76,27 +98,5 @@ class TodoList extends Component {
         );
     }
 }
-
-TodoList.propTypes = {
-    todoList: PropTypes.arrayOf(
-        PropTypes.shape({
-            _id: PropTypes.string.isRequired,
-            completed: PropTypes.bool.isRequired,
-            content: PropTypes.string.isRequired
-        })
-    ),
-    remainingTodoList: PropTypes.arrayOf(
-        PropTypes.shape({
-            _id: PropTypes.string.isRequired,
-            completed: PropTypes.bool.isRequired,
-            content: PropTypes.string.isRequired
-        })
-    ),
-    toggleTodo: PropTypes.func.isRequired,
-    editTodo: PropTypes.func.isRequired,
-    fetchTodos: PropTypes.func.isRequired,
-    removeTodo: PropTypes.func.isRequired,
-    saveTodo: PropTypes.func.isRequired
-};
 
 export default TodoList;

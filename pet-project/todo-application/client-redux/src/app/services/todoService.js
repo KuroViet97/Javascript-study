@@ -24,7 +24,7 @@ export const fetchTodos = () => ((dispatch, getState) => {
     dispatch(requestTodos());
     console.log("REQUESTING...");
     console.log("FETCHING...");
-    axios.get('/todos', tokenConfig(getState))
+    axios.get(`/api/user/${localStorage.getItem('userid')}`, tokenConfig(getState))
         .then(response => {
             console.log(response.data);
             dispatch(receiveTodos(response.data));
@@ -46,7 +46,7 @@ export const addTodo = (content) => ((dispatch, getState) => {
         content: todoAction.content
     }
 
-    axios.post('/todos', newTodo, tokenConfig(getState))
+    axios.post(`/api/user/${localStorage.getItem('userid')}`, newTodo, tokenConfig(getState))
         .then(response => {
             console.log(response.data);
             dispatch(addTodoSuccess());
@@ -63,7 +63,7 @@ export const addTodo = (content) => ((dispatch, getState) => {
 export const removeTodo = (_id) => ((dispatch, getState) => {
     console.log("REMOVE START...");
     dispatch(removeTodoStart(_id));
-    axios.delete(`/todos/${_id}`, tokenConfig(getState))
+    axios.delete(`/api/user/${localStorage.getItem('userid')}/todo/${_id}`, tokenConfig(getState))
         .then(response => {
             console.log(response);
             dispatch(removeTodoSuccess());
@@ -86,7 +86,7 @@ export const saveTodo = (todo) => ((dispatch, getState) => {
         completed: todo.completed,
         content: todo.content
     };
-    axios.put(`/todos/${todo._id}`, editedTodo, tokenConfig(getState))
+    axios.put(`/api/user/${localStorage.getItem('userid')}/`, editedTodo, tokenConfig(getState))
         .then(response => {
             console.log(response);
             dispatch(saveTodoSuccess());

@@ -2,7 +2,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Navbar = ({ isAuthenticated, userName, logout }) => {
+const Navbar = ({ isAuthenticated, wipeData, logout }) => {
+
+      const logOutAndWipeData = () => {
+            logout();
+            wipeData();
+      }
 
       const showLoginAndRegister = () => (
             <>
@@ -51,7 +56,7 @@ const Navbar = ({ isAuthenticated, userName, logout }) => {
                               <NavLink
                                     className="nav-link fa fa-sign-out"
                                     to={"/login"}
-                                    onClick={logout}
+                                    onClick={logOutAndWipeData}
                               >
                                     &nbsp; Logout
                               </NavLink>

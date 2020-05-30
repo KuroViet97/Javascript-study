@@ -17,7 +17,8 @@ import {
     UPDATE_TODO,
     CANCEL_UPDATE_TODO,
     EDIT_TODO,
-    TOGGLE_TODO
+    TOGGLE_TODO,
+    WIPE_DATA
 } from '../actions/index'
 
 const initialState = {
@@ -156,6 +157,13 @@ const asyncTodoList = (state = initialState, action) => {
                 ...state,
                 todos: guiOperations(state.todos, action)
             });
+        case WIPE_DATA:
+            return {
+                isFetching: false,
+                isFetched: false,
+                didInvaldiate: false,
+                todos: []
+            };
         default:
             return state;
     }

@@ -30,7 +30,8 @@ mongoose.connect(db, {
   keepAlive: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useFindAndModify: false
 });
 mongoose.set('debug', true);
 //set mongoose's Promise to use Node's Promise
@@ -44,9 +45,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
-app.use('/users', require('./routes/users'));
-app.use('/todos', require('./routes/todos'));
-app.use('/auth', require('./routes/auth'));
+app.use('/api/', require('./routes/user-todos'));
 
 app.use(express.json());
 
