@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const auth = (req, res, next) => {
       const token = req.header('x-auth-token');
 
-      console.log("token: " + token);
       // check for token
       if (!token) {
             return res.status(401).json({ message: 'Unauthroized - No token' });

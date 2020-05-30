@@ -22,14 +22,11 @@ import axios from 'axios';
 
 export const fetchTodos = () => ((dispatch, getState) => {
     dispatch(requestTodos());
-    console.log("REQUESTING...");
-    console.log("FETCHING...");
     axios.get(`/api/user/${localStorage.getItem('userid')}`, tokenConfig(getState))
         .then(response => {
             console.log(response.data);
             dispatch(receiveTodos(response.data));
         })
-        .then(() => console.log("FINISHED FETCHING!"))
         .catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status));
         });
@@ -37,7 +34,6 @@ export const fetchTodos = () => ((dispatch, getState) => {
 
 //add todo
 export const addTodo = (content) => ((dispatch, getState) => {
-    console.log("ADD START...");
     const todoAction = addTodoStart(content);
     dispatch(todoAction);
 
@@ -51,7 +47,6 @@ export const addTodo = (content) => ((dispatch, getState) => {
             console.log(response.data);
             dispatch(addTodoSuccess());
         })
-        .then(() => console.log("FINISHED ADDING!"))
         .catch(err => {
             console.log(err);
             dispatch(addTodoFailure(err));
@@ -61,14 +56,12 @@ export const addTodo = (content) => ((dispatch, getState) => {
 
 //remove todo
 export const removeTodo = (_id) => ((dispatch, getState) => {
-    console.log("REMOVE START...");
     dispatch(removeTodoStart(_id));
     axios.delete(`/api/user/${localStorage.getItem('userid')}/todo/${_id}`, tokenConfig(getState))
         .then(response => {
             console.log(response);
             dispatch(removeTodoSuccess());
         })
-        .then(() => console.log("FINISHED REMOVING!"))
         .catch(err => {
             console.log(err);
             dispatch(removeTodoFailure(err));
@@ -78,7 +71,6 @@ export const removeTodo = (_id) => ((dispatch, getState) => {
 
 //save todo
 export const saveTodo = (todo) => ((dispatch, getState) => {
-    console.log("SAVE START...");
     dispatch(saveTodoStart(todo));
 
     const editedTodo = {
@@ -91,7 +83,6 @@ export const saveTodo = (todo) => ((dispatch, getState) => {
             console.log(response);
             dispatch(saveTodoSuccess());
         })
-        .then(() => console.log("FINISHED SAVING!"))
         .catch(err => {
             console.log(err);
             dispatch(saveTodoFailure());

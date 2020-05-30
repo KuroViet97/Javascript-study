@@ -21,7 +21,6 @@ export const REMOVE_FAILURE = 'REMOVE_FAILURE';
 
 const generateRandomUUID = () => {
     const uuid = randomUUID();
-    console.log('UUID CREATED: ' + uuid);
     return uuid;
 };
 
